@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 90%;
+            height: 90%;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div span {
+            margin-bottom: 400px;
+        }
+
+        #toggle {
+            width: 50px;
+            height: 13px;
+            border: 1px solid black;
+            margin: 50px 0px 25px 0px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+        }
+
+        #slider {
+            width: 12px;
+            height: 12px;
+            background-color: black;
+            border-radius: 50%;
+            margin: .6px;
+        }
+
+        .dark-body {
+            background-color: black;
+            color: white;
+        }
+
+        .temp {
+            background-color: white;
+        }
+
+        .temp2 {
+            border: 1px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="toggle">
+            <div id="slider"></div>
+        </div>
+        <span>Toggle Using JQuery</span>
+    </div>
+    <script>
+        let isToggle = true;
+        let toggle = $('#toggle')
+        $('#toggle').click(function () {
+            // var elememt = $(this);
+            $('body').toggleClass('dark-body')
+            // $('#slider').toggleClass('temp')
+            $('.container').toggleClass('temp2')
+
+            if (isToggle) {
+                toggle.css('justify-content', 'right')
+                toggle.css('border', '1px solid white')
+                $('#slider').css('background-color', 'white')
+                isToggle = false;
+            } else {
+                toggle.css('justify-content', 'left')
+                $('#slider').css('background-color', 'black')
+                toggle.css('border', '1px solid black')
+                isToggle = true
+            }
+            console.log('javascript');
+        })
+
+    </script>
+</body>
+
+</html>
