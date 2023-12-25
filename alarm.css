@@ -30,7 +30,7 @@
   height: 280px;
   margin-left: 10px;
   padding: 12px;
-  display: flex;
+  display: none;
   flex-direction: column;
   position: absolute;
   border-radius: 15px;
@@ -42,6 +42,7 @@
 #card-heading {
   font-size: 8px;
   font-weight: 700;
+  color: rgb(82, 78, 78);
 }
 
 #time-card {
@@ -74,13 +75,16 @@
   justify-content: center;
   font-size: 1.8rem;
   background-color: rgb(234, 242, 238);
+  color: rgb(2, 72, 2);
 }
 .hours-minutes:hover {
   background-color: rgba(128, 212, 128, 0.806);
 }
 #hours {
+  cursor: pointer;
 }
 #minutes {
+  cursor: pointer;
 }
 
 #set-time {
@@ -88,7 +92,7 @@
   height: 125px;
   background-color: bisque;
   border-radius: 50%;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -110,6 +114,7 @@
   display: inline-block;
   font-size: 9px;
   color: rgb(77, 74, 74);
+  cursor: pointer;
 }
 .hand {
   display: flex;
@@ -121,20 +126,21 @@
   background-color: rgb(77, 74, 74);
   width: 2px;
   height: 30%;
+  display: none;
 }
 
 .set-minute-time {
   width: 125px;
   height: 125px;
-  background-color: rgb(251, 231, 206);
+  background-color: rgb(234, 242, 238);
   border-radius: 5px;
-  display: flex;
+  display: none;
   align-items: center;
 }
 #set-minute-time {
   width: 125px;
   height: 35px;
-  background-color: aqua;
+  background-color: rgba(156, 217, 156, 0.806);
 }
 
 #Am-Pm {
@@ -144,10 +150,11 @@
   margin-top: 10px;
 }
 .Am-Pm {
-  border: 1px solid black;
+  border: 1px solid rgb(82, 78, 78);
   font-weight: 700;
   font-size: 8px;
   background-color: white;
+  color: rgb(82, 78, 78);
 }
 .Am-Pm:hover {
   background-color: rgb(251, 231, 206);
@@ -162,16 +169,59 @@
 }
 
 .card-row {
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px 0px 2px 0px;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgb(82, 78, 78);
+}
+.card-row select {
+  font-size: 10px;
+  font-weight: 700;
+  border: none;
+  color: rgb(82, 78, 78);
+  padding: 4px;
+}
+
+#bottom button {
+  border: none;
+  background-color: white;
+  font-size: 10px;
+  color: rgb(2, 101, 2);
+  font-weight: 700;
+}
+#cancelButton {
+  margin-left: 60%;
 }
 
 #repeat {
+  margin-top: 9px;
 }
 
 #sound {
 }
 
 #snooze {
+  margin-bottom: 17px;
+}
+#toggle-snooze {
+  width: 27px;
+  height: 16px;
+  background-color: rgba(155, 201, 155, 0.806);
+  border-radius: 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+#slider-snooze {
+  width: 12px;
+  height: 12px;
+  background-color: rgb(165, 162, 162);
+  border-radius: 50%;
+  margin: 2.3px;
 }
 
 #bottom {

@@ -44,7 +44,7 @@
             <button
               class="material-symbols-outlined"
               id="add-button"
-              onclick="setAlarm()"
+              onclick="setNewAlarm()"
             >
               add
             </button>
@@ -55,9 +55,16 @@
             <div id="time-card">
               <div class="set-time">
                 <div id="hours-minutes">
-                  <span class="hours-minutes" id="hours">00</span>
+                  <span class="hours-minutes" id="hours" onclick="setHours()"
+                    >00</span
+                  >
                   <b style="font-size: 30px; font-weight: 100">:</b>
-                  <span id="minutes" class="hours-minutes">00</span>
+                  <span
+                    class="hours-minutes"
+                    id="minutes"
+                    onclick="setMinutes()"
+                    >00</span
+                  >
                 </div>
                 <div id="Am-Pm">
                   <button class="Am-Pm" id="Am">AM</button
@@ -68,8 +75,6 @@
                 <div id="set-time">
                   <div id="point"></div>
                   <div style="--clr: #ff3dff" class="hand"><i></i></div>
-                  <!-- <div style="--clr: #ff3dff" class="hand"><i></i></div>
-                  <div style="--clr: #ff3dff" class="hand"><i></i></div> -->
                   <span style="--i: 1"><b>1</b></span>
                   <span style="--i: 2"><b>2</b></span>
                   <span style="--i: 3"><b>3</b></span>
@@ -83,7 +88,7 @@
                   <span style="--i: 11"><b>11</b></span>
                   <span style="--i: 12"><b>12</b></span>
                 </div>
-                <div class="set-minute-time">
+                <div class="set-minute-time" id="set-minute">
                   <div id="set-minute-time"></div>
                 </div>
               </div>
@@ -96,7 +101,7 @@
                 <option value="Always">Always</option>
               </select>
             </div>
-
+            <hr />
             <div class="card-row" id="sound">
               <span>Sound</span>
               <select id="sound-op">
@@ -105,15 +110,19 @@
                 <option value="Silent">Silent</option>
               </select>
             </div>
+            <hr />
             <div class="card-row" id="snooze">
               <span>Snooze</span>
-              <select id="snooze-op">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
+              <span id="toggle-snooze" onclick="toggleSnooze()">
+                <div id="slider-snooze"></div>
+              </span>
             </div>
             <div class="card-row" id="bottom">
-              <span class="material-symbols-outlined"> keyboard </span
+              <button
+                class="material-symbols-outlined"
+                style="font-size: 20px; font-weight: 500"
+              >
+                keyboard</button
               ><button id="cancelButton" onclick="cancelButton()">Cancel</button
               ><button id="okButton" onclick="okButton()">Ok</button>
             </div>
@@ -152,4 +161,5 @@
   <script type="text/javascript" src="index.js" defer></script>
   <script type="text/javascript" src="worldclock.js" defer></script>
   <script type="text/javascript" src="stopwatch.js" defer></script>
+  <script type="text/javascript" src="alarm.js" defer></script>
 </html>
