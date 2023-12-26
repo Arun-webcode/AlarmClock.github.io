@@ -1,3 +1,17 @@
+let alarm = [];
+
+let newAlarmHour = document.getElementById("hours").value;
+let newAlarmMin = document.getElementById("minutes").value;
+
+let newAlarm = {
+  hour: newAlarmHour,
+  minute: newAlarmMin,
+};
+
+alarm.push(newAlarm);
+
+// yahan se space
+
 let alarmNewCard = document.getElementById("setnew-alarm");
 // set new alarm open card
 function setNewAlarm() {

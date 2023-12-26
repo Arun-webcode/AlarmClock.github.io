@@ -1,5 +1,5 @@
 /* It seperates second button which shows Alarm timing and history*/
-#alarm {
+.alarm {
   width: 100px;
   height: 100px;
   border: 1px dashed black;
@@ -13,17 +13,21 @@
   justify-content: center;
   align-items: center;
 }
-#alarm span {
+.alarm span {
   color: rgb(2, 101, 2);
   font-size: 12px;
   margin-bottom: 2px;
 }
-#alarm button {
+.alarm button {
   color: rgb(2, 101, 2);
   background-color: rgb(206, 227, 217);
   border: none;
   cursor: pointer;
 }
+
+/* #createdAlarm{
+  flex-direction: column;
+} */
 
 #setnew-alarm {
   width: 280px;
