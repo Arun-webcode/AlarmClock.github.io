@@ -1,4 +1,6 @@
 /* It seperates second button which shows Alarm timing and history*/
+
+/* New alarm set button with plus(+) icon */
 #alarm {
   width: 90px;
   height: 90px;
@@ -11,11 +13,13 @@
   justify-content: center;
   align-items: center;
 }
+/* Add new Text */
 #alarm span {
   color: rgb(2, 101, 2);
   font-size: 12px;
   margin-bottom: 2px;
 }
+/* Material Ui icon button */
 #alarm button {
   color: rgb(2, 101, 2);
   background-color: rgb(206, 227, 217);
@@ -27,6 +31,8 @@
   flex-direction: column;
 } */
 
+/* after clicking on plus button the new card for set alarm */
+/* Card css starts here */
 #setnew-alarm {
   width: 280px;
   height: 280px;
@@ -39,21 +45,21 @@
   background-color: white;
   transition: opacity 0.5s ease-in-out;
 }
-
-/* Card css starts here */
+/* Heading of set alarm card  */
 #card-heading {
   font-size: 8px;
   font-weight: 700;
   color: rgb(82, 78, 78);
 }
 
+/* hours minutes and watch are inside this container div  */
 #time-card {
   width: 100%;
   height: 50%;
   display: flex;
   /* border: 1px solid black; */
 }
-
+/* Seperates 50% left box for set hour and minute  */
 .set-time {
   width: 50%;
   height: 100%;
@@ -63,11 +69,13 @@
   justify-content: center;
   flex-direction: column;
 }
+/* // it indicates property for both hours and minutes container*/
 #hours-minutes {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/* set property for both hour and minute section */
 .hours-minutes {
   width: 50px;
   height: 40px;
@@ -89,6 +97,7 @@
   cursor: pointer;
 }
 
+/* property for making watch for set hours  */
 #set-time {
   width: 125px;
   height: 125px;
@@ -130,7 +139,7 @@
   height: 30%;
   display: none;
 }
-
+/* container for minutes changing after */
 .set-minute-time {
   width: 125px;
   height: 125px;
@@ -145,6 +154,7 @@
   background-color: rgba(156, 217, 156, 0.806);
 }
 
+/* Am Pm properties under hour-minute container */
 #Am-Pm {
   width: 105px;
   display: flex;
@@ -169,7 +179,7 @@
   padding: 4% 18% 4% 20%;
   border-radius: 0px 4px 4px 0px;
 }
-
+/* repeat sound snooze button container property */
 .card-row {
   /* border: 1px solid black; */
   display: flex;
@@ -180,6 +190,7 @@
   font-weight: 700;
   color: rgb(82, 78, 78);
 }
+/* options select button property */
 .card-row select {
   font-size: 10px;
   font-weight: 700;
@@ -188,6 +199,7 @@
   padding: 4px;
 }
 
+/* icon ok and cancel button property */
 #bottom button {
   border: none;
   background-color: white;
@@ -209,6 +221,7 @@
 #snooze {
   margin-bottom: 17px;
 }
+/* Snooze toggle on/off button properties */
 #toggle-snooze {
   width: 27px;
   height: 16px;
