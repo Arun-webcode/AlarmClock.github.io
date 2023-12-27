@@ -1,24 +1,22 @@
 /* It seperates second button which shows Alarm timing and history*/
-.alarm {
-  width: 100px;
-  height: 100px;
+#alarm {
+  width: 90px;
+  height: 90px;
   border: 1px dashed black;
-  position: absolute;
+  position: relative;
   border-radius: 5px;
   border-color: rgb(2, 101, 2);
-  visibility: visible;
-  order: -1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.alarm span {
+#alarm span {
   color: rgb(2, 101, 2);
   font-size: 12px;
   margin-bottom: 2px;
 }
-.alarm button {
+#alarm button {
   color: rgb(2, 101, 2);
   background-color: rgb(206, 227, 217);
   border: none;
@@ -229,4 +227,19 @@
 }
 
 #bottom {
+}
+
+.card {
+  width: 90px;
+  height: 90px;
+  padding: 10px;
+  border: 1px solid #000000;
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+#card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
 }

@@ -1,14 +1,14 @@
-let alarm = [];
+// let alarm = [];
 
-let newAlarmHour = document.getElementById("hours").value;
-let newAlarmMin = document.getElementById("minutes").value;
+// let newAlarmHour = document.getElementById("hours").value;
+// let newAlarmMin = document.getElementById("minutes").value;
 
-let newAlarm = {
-  hour: newAlarmHour,
-  minute: newAlarmMin,
-};
+// let newAlarm = {
+//   hour: newAlarmHour,
+//   minute: newAlarmMin,
+// };
 
-alarm.push(newAlarm);
+// alarm.push(newAlarm);
 
 // yahan se space
 
@@ -29,9 +29,27 @@ function setMinutes() {
 }
 
 // it is cancel button of u want to discard new alarm or if you want to set new alarm then press ok button and new alarm will be set
+
+let cardCounter = 1;
 function okButton() {
   alarmNewCard.style.display = "none";
+  //Generate new card from here
+  const cardContainer = document.getElementById("card-container");
+  // Create a new card div
+  const card = document.createElement("div");
+  card.className = "card";
+  card.id = `card-${cardCounter}`;
+  card.innerHTML = `<p>Card ${cardCounter}</p>
+                <button onclick="customAction(${cardCounter})">Custom Action</button>
+                <button onclick="deleteCard(${cardCounter})">Delete Card</button>`;
+
+  // Append the card to the card container
+  cardContainer.appendChild(card);
+
+  // Increment the card counter
+  cardCounter++;
 }
+
 function cancelButton() {
   alarmNewCard.style.display = "none";
 }
