@@ -75,16 +75,16 @@ body {
   background-color: white;
   color: rgb(2, 101, 2);
 }
-/* main content */
 #mid-container {
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 15px 13px 15px 13px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 10px;
+  align-content: baseline;
 }
 
 /* It seperates first button which shows Real world timing */
