@@ -2,8 +2,8 @@
 
 /* New alarm set button with plus(+) icon */
 #alarm {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border: 1px dashed black;
   position: relative;
   border-radius: 5px;
@@ -36,7 +36,7 @@
 #setnew-alarm {
   width: 280px;
   height: 280px;
-  margin-left: 10px;
+  margin-left: 20px;
   padding: 12px;
   display: none;
   flex-direction: column;
@@ -243,10 +243,11 @@
 }
 
 .card {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   padding: 10px;
-  border: 1px solid #000000;
+  background-color: white;
+  border-radius: 5px;
   box-sizing: border-box; /* Include padding and border in the width calculation */
 }
 
