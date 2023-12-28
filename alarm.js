@@ -1,5 +1,3 @@
-// let alarm = [];
-
 // let newAlarmHour = document.getElementById("hours").value;
 // let newAlarmMin = document.getElementById("minutes").value;
 
@@ -29,27 +27,61 @@ function setMinutes() {
 }
 
 // it is cancel button of u want to discard new alarm or if you want to set new alarm then press ok button and new alarm will be set
-
+let alarms = []; // Array to store upcoming alarms
 let cardCounter = 1;
+
 function okButton() {
   alarmNewCard.style.display = "none";
-  //Generate new card from here
-  const cardContainer = document.getElementById("card-container");
-  // Create a new card div
-  const card = document.createElement("div");
-  card.className = "card";
-  card.id = `card-${cardCounter}`;
-  card.innerHTML = `<p>Card ${cardCounter}</p>
-                <button onclick="customAction(${cardCounter})">Custom Action</button>
-                <button onclick="deleteCard(${cardCounter})">Delete Card</button>`;
 
-  // Append the card to the card container
-  cardContainer.appendChild(card);
+  let newAlarmHour = document.getElementById("hours").value;
+  let newAlarmMin = document.getElementById("minutes").value;
 
-  // Increment the card counter
-  cardCounter++;
+  setTimeout(() => {
+    //Generate new card from here
+    const cardContainer = document.getElementById("card-container");
+    // Create a new card div
+    const card = document.createElement("div");
+    card.className = "card";
+    card.id = `card-${cardCounter}`;
+    card.innerHTML = `<div>${newAlarmHour}:${newAlarmMin} </div>
+                <button onclick="deleteCard(${cardCounter})">Delete Card</button>
+                <div onclick="customAction(${cardCounter})">Custom Action</div>
+                `;
+
+    // Append the card to the card container
+    cardContainer.appendChild(card);
+
+    // Increment the card counter
+    cardCounter++;
+  });
+
+  if (
+    isNaN(newAlarmHour) ||
+    isNaN(newAlarmMin) ||
+    newAlarmHour < 0 ||
+    newAlarmHour > 23 ||
+    newAlarmMin < 0 ||
+    newAlarmMin > 59
+  ) {
+    alert("Invalid input. Please enter valid hours and minutes.");
+    return;
+  }
+
+  let newAlarm = { hour: newAlarmHour, min: newAlarmMin };
+  alarms.push(newAlarm);
+}
+// for deleting the card
+function deleteCard(cardId) {
+  const cardToRemove = document.getElementById(`card-${cardId}`);
+  if (cardToRemove) {
+    cardToRemove.remove();
+    // alert(`Card ${cardId} deleted`);
+  } else {
+    // alert(`Card ${cardId} not found`);
+  }
 }
 
+// for cancelling the set new alarm
 function cancelButton() {
   alarmNewCard.style.display = "none";
 }
