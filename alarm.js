@@ -36,24 +36,38 @@ function okButton() {
   let newAlarmHour = document.getElementById("hours").value;
   let newAlarmMin = document.getElementById("minutes").value;
 
-  setTimeout(() => {
-    //Generate new card from here
-    const cardContainer = document.getElementById("card-container");
-    // Create a new card div
-    const card = document.createElement("div");
-    card.className = "card";
-    card.id = `card-${cardCounter}`;
-    card.innerHTML = `<div>${newAlarmHour}:${newAlarmMin} </div>
-                <button onclick="deleteCard(${cardCounter})">Delete Card</button>
-                <div onclick="customAction(${cardCounter})">Custom Action</div>
+  // setTimeout(() => {
+  //Generate new card from here
+  const cardContainer = document.getElementById("card-container");
+  // Create a new card div
+  const card = document.createElement("div");
+  card.className = "card";
+  card.id = `card-${cardCounter}`;
+  card.innerHTML = `<div style="font-size: 20px">${newAlarmHour}:${newAlarmMin} <span style="font-size: 11px">PM</span>
+                <sup id="more_vert"
+                 style="font-size: 16px" 
+                 class="material-symbols-outlined" 
+                 onclick="togglePopUp()"
+                 >more_vert
+                 </sup>
+                 <div id="myPopup" class="popup">
+                 <button class="del-dis-btn" onclick="deleteCard(${cardCounter})">Delete</button>
+                 <button class="del-dis-btn">Disable</button>
+                 </div>
+                 <div>Repeat:</div>
+                 <div>Sound:</div>
+                 <span id="toggle-snooze-win" onclick="toggleSnooze()">
+                 <div id="slider-snooze-win"></div>
+                 </span>
+                    </div>
                 `;
 
-    // Append the card to the card container
-    cardContainer.appendChild(card);
+  // Append the card to the card container
+  cardContainer.appendChild(card);
 
-    // Increment the card counter
-    cardCounter++;
-  });
+  // Increment the card counter
+  cardCounter++;
+  // });
 
   if (
     isNaN(newAlarmHour) ||
@@ -70,6 +84,22 @@ function okButton() {
   let newAlarm = { hour: newAlarmHour, min: newAlarmMin };
   alarms.push(newAlarm);
 }
+
+function togglePopUp() {
+  var popup = document.getElementById("myPopup");
+  popup.style.display = popup.style.display === "block" ? "none" : "block";
+}
+
+// Close the popup if the user clicks outside of it
+window.onclick = function (event) {
+  if (!event.target.matches(".material-symbols-outlined")) {
+    var popup = document.getElementById("myPopup");
+    if (popup.style.display === "block") {
+      popup.style.display = "none";
+    }
+  }
+};
+
 // for deleting the card
 function deleteCard(cardId) {
   const cardToRemove = document.getElementById(`card-${cardId}`);

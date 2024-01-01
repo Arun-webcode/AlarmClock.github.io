@@ -30,7 +30,7 @@ body {
 
 /* Inner container which is the main part of the container with flex property */
 .inner-container {
-  width: 45%;
+  width: 47%;
   height: 90%;
   border: 4px solid gray;
   border-radius: 15px;
@@ -78,7 +78,7 @@ body {
 #mid-container {
   width: 100%;
   height: 100%;
-  padding: 15px 13px 15px 13px;
+  padding: 15px 12px 15px 12px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
