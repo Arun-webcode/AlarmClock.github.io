@@ -127,6 +127,9 @@
   color: rgb(77, 74, 74);
   cursor: pointer;
 }
+#set-time span b:hover {
+  background-color: aqua;
+}
 .hand {
   display: flex;
   align-items: end;
@@ -248,7 +251,9 @@
   padding: 7px;
   background-color: white;
   border-radius: 5px;
+  position: relative;
   box-sizing: border-box; /* Include padding and border in the width calculation */
+  font-size: 20px;
 }
 
 #card-container {
@@ -267,9 +272,9 @@
   width: 50px;
   height: 40px;
   display: none;
-  position: absolute;
-  left: 91%; /*Adjusted to open on the right side */
-  top: -15px;
+  position: relative;
+  right: 15px; /*Adjusted to open on the right side */
+  top: 20px;
   background-color: #fff;
   border: 1px solid #ccc;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -298,6 +303,7 @@
   display: flex;
   justify-content: left;
   align-items: center;
+  margin: 12px 0px 2px 2px;
 }
 #slider-snooze-win {
   width: 12px;
@@ -305,4 +311,14 @@
   background-color: rgb(165, 162, 162);
   border-radius: 50%;
   margin: 2.3px;
+}
+
+#repeat-show {
+  font-size: 10px;
+  margin: 3px 0px 2px 2px;
+}
+
+#sound-show {
+  font-size: 10px;
+  margin: 2px 0px 12px 2px;
 }

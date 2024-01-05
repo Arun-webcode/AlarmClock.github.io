@@ -8,7 +8,7 @@
 
 // alarm.push(newAlarm);
 
-// yahan se space
+// yahan se space dena hai
 
 let alarmNewCard = document.getElementById("setnew-alarm");
 // set new alarm open card
@@ -29,6 +29,18 @@ function setMinutes() {
 // it is cancel button of u want to discard new alarm or if you want to set new alarm then press ok button and new alarm will be set
 let alarms = []; // Array to store upcoming alarms
 let cardCounter = 1;
+let ampm; // Variable to store the selected value
+
+function selectTime(event) {
+  let selectedElement = event.target;
+
+  if (selectedElement.classList.contains("Am-Pm")) {
+    ampm = selectedElement.textContent;
+    console.log("Selected value: " + ampm);
+  }
+}
+
+console.log("Selected value: " + ampm);
 
 function okButton() {
   alarmNewCard.style.display = "none";
@@ -43,22 +55,27 @@ function okButton() {
   const card = document.createElement("div");
   card.className = "card";
   card.id = `card-${cardCounter}`;
-  card.innerHTML = `<div style="font-size: 20px">${newAlarmHour}:${newAlarmMin} <span style="font-size: 11px">PM</span>
+  card.innerHTML = `<div >${newAlarmHour}:${newAlarmMin} <span style="font-size: 10px">${ampm}</span>
+
                 <sup id="more_vert"
                  style="font-size: 16px" 
                  class="material-symbols-outlined" 
                  onclick="togglePopUp()"
                  >more_vert
                  </sup>
+
                  <div id="myPopup" class="popup">
                  <button class="del-dis-btn" onclick="deleteCard(${cardCounter})">Delete</button>
                  <button class="del-dis-btn">Disable</button>
                  </div>
-                 <div>Repeat:</div>
-                 <div>Sound:</div>
+
+                 <div id="repeat-show">Repeat:</div>
+                 <div id="sound-show">Sound:</div>
+
                  <span id="toggle-snooze-win" onclick="toggleSnooze()">
                  <div id="slider-snooze-win"></div>
                  </span>
+
                     </div>
                 `;
 
