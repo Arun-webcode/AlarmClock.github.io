@@ -1,166 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ultimate Alarm Clock</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="alarm.css" />
-    <link rel="stylesheet" href="worldclock.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-  </head>
 
-  <body>
-    <div class="main-container">
-      <div class="inner-container">
-        <div class="navbar">
-          <span>Alarm</span>
-          <button class="material-symbols-outlined">add</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultimate Alarm Clock</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="alarm.css" />
+  <link rel="stylesheet" href="worldclock.css" />
+  <link rel="stylesheet" href="stopwatch.css" />
+  <link rel="stylesheet" href="timer.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
 
-        <div id="mid-container">
-          <!-- <div id="world-clock">
-            <div id="clock">
-              <span style="--i: 1"><b>1</b></span>
-              <span style="--i: 2"><b>2</b></span>
-              <span style="--i: 3"><b>3</b></span>
-              <span style="--i: 4"><b>4</b></span>
-              <span style="--i: 5"><b>5</b></span>
-              <span style="--i: 6"><b>6</b></span>
-              <span style="--i: 7"><b>7</b></span>
-              <span style="--i: 8"><b>8</b></span>
-              <span style="--i: 9"><b>9</b></span>
-              <span style="--i: 10"><b>10</b></span>
-              <span style="--i: 11"><b>11</b></span>
-              <span style="--i: 12"><b>12</b></span>
+<body>
+  <div class="main-container">
+    <div class="inner-container">
+      <div class="navbar">
+        <span>Alarm</span>
+        <button class="material-symbols-outlined">add</button>
+      </div>
+
+      <div id="mid-container">
+
+        <div id="world-clock">
+          <!-- <div id="clock">
+            <div>
+              <div class="info date"></div>
+              <div class="info day"></div>
             </div>
+            <div class="dot"></div>
+            <div>
+              <div class="hour-hand"></div>
+              <div class="minute-hand"></div>
+              <div class="second-hand"></div>
+            </div>
+            <div>
+              <span class="h3">3</span>
+              <span class="h6">6</span>
+              <span class="h9">9</span>
+              <span class="h12">12</span>
+            </div>
+            <div class="diallines"></div>
           </div> -->
+        </div>
 
-          <div id="card-container"></div>
-          <div id="alarm">
-            <span>Add New</span>
-            <button
-              class="material-symbols-outlined"
-              id="add-button"
-              onclick="setNewAlarm()"
-            >
-              add
-            </button>
-          </div>
 
-          <div id="setnew-alarm">
-            <span id="card-heading">Select time</span>
-            <div id="time-card">
-              <div class="set-time">
-                <div id="hours-minutes">
-                  <input class="hours-minutes" id="hours" onclick="setHours()"
-                    ></input
-                  >
-                  <b style="font-size: 30px; font-weight: 100">:</b>
-                  <input
-                    class="hours-minutes"
-                    id="minutes"
-                    onclick="setMinutes()"
-                    ></input
-                  >
-                </div>
-                <div id="Am-Pm" onclick="selectTime(event)">
-                  <button class="Am-Pm" id="Am">AM</button>
-                  <button class="Am-Pm" id="Pm">PM</button>
-                </div>
+        <div id="card-container"></div>
+        <div id="alarm">
+          <span>Add New</span>
+          <button class="material-symbols-outlined" id="add-button" onclick="setNewAlarm()">
+            add
+          </button>
+        </div>
+
+        <div id="setnew-alarm">
+          <span id="card-heading">Select time</span>
+          <div id="time-card">
+            <div class="set-time">
+              <div id="hours-minutes">
+                <input class="hours-minutes" id="hours" onclick="setHours()"></input>
+                <b style="font-size: 30px; font-weight: 100">:</b>
+                <input class="hours-minutes" id="minutes" onclick="setMinutes()"></input>
               </div>
-              <div class="set-time">
-                <div id="set-time">
-                  <div id="point"></div>
-                  <div style="--clr: #ff3dff" class="hand"><i></i></div>
-                  <span style="--i: 1"><b>1</b></span>
-                  <span style="--i: 2"><b>2</b></span>
-                  <span style="--i: 3"><b>3</b></span>
-                  <span style="--i: 4"><b>4</b></span>
-                  <span style="--i: 5"><b>5</b></span>
-                  <span style="--i: 6"><b>6</b></span>
-                  <span style="--i: 7"><b>7</b></span>
-                  <span style="--i: 8"><b>8</b></span>
-                  <span style="--i: 9"><b>9</b></span>
-                  <span style="--i: 10"><b>10</b></span>
-                  <span style="--i: 11"><b>11</b></span>
-                  <span style="--i: 12"><b>12</b></span>
-                </div>
-                <div class="set-minute-time" id="set-minute">
-                  <div id="set-minute-time"></div>
-                </div>
+              <div id="Am-Pm" onclick="selectTime(event)">
+                <button class="Am-Pm" id="Am">AM</button>
+                <button class="Am-Pm" id="Pm">PM</button>
               </div>
             </div>
-
-            <div class="card-row" id="repeat">
-              <span>Repeat</span>
-              <select id="repeat-op">
-                <option value="Never">Never</option>
-                <option value="Always">Always</option>
-              </select>
-            </div>
-            <hr />
-            <div class="card-row" id="sound">
-              <span>Sound</span>
-              <select id="sound-op">
-                <option value="Waves">Waves</option>
-                <option value="Audio">Audio</option>
-                <option value="Silent">Silent</option>
-              </select>
-            </div>
-            <hr />
-            <div class="card-row" id="snooze">
-              <span>Snooze</span>
-              <span id="toggle-snooze" onclick="toggleSnooze()">
-                <div id="slider-snooze"></div>
-              </span>
-            </div>
-            <div class="card-row" id="bottom">
-              <button
-                class="material-symbols-outlined"
-                style="font-size: 20px; font-weight: 500"
-              >
-                keyboard</button
-              ><button id="cancelButton" onclick="cancelButton()">Cancel</button
-              ><button id="okButton" onclick="okButton()">Ok</button>
+            <div class="set-time">
+              <div id="set-time">
+                <div id="point"></div>
+                <div style="--clr: #ff3dff" class="hand"><i></i></div>
+                <span style="--i: 1"><b>1</b></span>
+                <span style="--i: 2"><b>2</b></span>
+                <span style="--i: 3"><b>3</b></span>
+                <span style="--i: 4"><b>4</b></span>
+                <span style="--i: 5"><b>5</b></span>
+                <span style="--i: 6"><b>6</b></span>
+                <span style="--i: 7"><b>7</b></span>
+                <span style="--i: 8"><b>8</b></span>
+                <span style="--i: 9"><b>9</b></span>
+                <span style="--i: 10"><b>10</b></span>
+                <span style="--i: 11"><b>11</b></span>
+                <span style="--i: 12"><b>12</b></span>
+              </div>
+              <div class="set-minute-time" id="set-minute">
+                <div id="set-minute-time"></div>
+              </div>
             </div>
           </div>
 
-          <!-- <div id="stop-watch"></div>
-          <button id="startStopButton" onclick="startStop()">Start</button>
-
-          <div id="timer">timer</div> -->
+          <div class="card-row" id="repeat">
+            <span>Repeat</span>
+            <select id="repeat-op">
+              <option value="Never">Never</option>
+              <option value="Always">Always</option>
+            </select>
+          </div>
+          <hr />
+          <div class="card-row" id="sound">
+            <span>Sound</span>
+            <select id="sound-op">
+              <option value="Waves">Waves</option>
+              <option value="Audio">Audio</option>
+              <option value="Silent">Silent</option>
+            </select>
+          </div>
+          <hr />
+          <div class="card-row" id="snooze">
+            <span>Snooze</span>
+            <span id="toggle-snooze" onclick="toggleSnooze()">
+              <div id="slider-snooze"></div>
+            </span>
+          </div>
+          <div class="card-row" id="bottom">
+            <button class="material-symbols-outlined" style="font-size: 20px; font-weight: 500">
+              keyboard</button><button id="cancelButton" onclick="cancelButton()">Cancel</button><button id="okButton"
+              onclick="okButton()">Ok</button>
+          </div>
         </div>
 
-        <div class="bottom">
-          <button class="bottom-buttons" onclick="worldClock()">
-            <span class="material-symbols-outlined"> public</span>
-            World Clock
-          </button>
-          <button class="bottom-buttons">
-            <span class="material-symbols-outlined"> alarm </span>
-            Alarm
-          </button>
-          <button class="bottom-buttons">
-            <span class="material-symbols-outlined"> timer </span>
-            Stop-Watch
-          </button>
-          <button class="bottom-buttons">
-            <span class="material-symbols-outlined"> avg_time </span>
-            Timer
-          </button>
+        <div id="stop-watch">
+          <section>
+            <span class="seconds">00</span><span style="font-size: 50px;" class="material-symbols-outlined">
+              go_to_line</span><span class="tens">00</span>
+          </section>
+          <div class="buttons">
+            <button class="btn start">Start</button>
+            <button class="btn stop">Stop</button>
+            <button class="btn reset">Reset</button>
+          </div>
         </div>
+
+        <div id="timer">timer</div>
+      </div>
+
+      <div class="bottom">
+        <button class="bottom-buttons" onclick="worldClock()">
+          <span class="material-symbols-outlined"> public</span>
+          World Clock
+        </button>
+        <button class="bottom-buttons">
+          <span class="material-symbols-outlined"> alarm </span>
+          Alarm
+        </button>
+        <button class="bottom-buttons">
+          <span class="material-symbols-outlined"> timer </span>
+          Stop-Watch
+        </button>
+        <button class="bottom-buttons">
+          <span class="material-symbols-outlined"> avg_time </span>
+          Timer
+        </button>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 
-  <!-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script> -->
-  <script type="text/javascript" src="index.js" defer></script>
-  <script type="text/javascript" src="worldclock.js" defer></script>
-  <script type="text/javascript" src="stopwatch.js" defer></script>
-  <script type="text/javascript" src="alarm.js" defer></script>
-</html>
+<script type="text/javascript" src="index.js" defer></script>
+<script type="text/javascript" src="worldclock.js" defer></script>
+<script type="text/javascript" src="stopwatch.js" defer></script>
+<script type="text/javascript" src="alarm.js" defer></script>
+<script type="text/javascript" src="timer.js" defer></script>
+
+</html

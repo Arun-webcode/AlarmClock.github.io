@@ -1,44 +1,46 @@
-// let isRunning = false;
-// let startTime;
-// let elapsedTime = 0;
-// let interval;
+window.onload = () => {
+  let seconds = 0;
+  let tens = 0;
 
-// function startStop() {
-//   if (isRunning) {
-//     // Stop the stopwatch
-//     clearInterval(interval);
-//     isRunning = false;
-//     document.getElementById("startStopButton").textContent = "Start";
-//   } else {
-//     // Start the stopwatch
-//     startTime = new Date().getTime() - elapsedTime;
-//     interval = setInterval(updateStopwatch, 100);
-//     isRunning = true;
-//     document.getElementById("startStopButton").textContent = "Stop";
-//   }
-// }
+  const Seconds = document.querySelector(".seconds");
+  const Tens = document.querySelector(".tens");
+  const startBtn = document.querySelector(".start");
+  const stopBtn = document.querySelector(".stop");
+  const resetBtn = document.querySelector(".reset");
 
-// function updateStopwatch() {
-//   const currentTime = new Date().getTime();
-//   elapsedTime = currentTime - startTime;
-//   displayTime(elapsedTime);
-// }
+  let Interval = 0;
 
-// function displayTime(time) {
-//   const hours = Math.floor(time / (1000 * 60 * 60))
-//     .toString()
-//     .padStart(2, "0");
-//   const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60))
-//     .toString()
-//     .padStart(2, "0");
-//   const seconds = Math.floor((time % (1000 * 60)) / 1000)
-//     .toString()
-//     .padStart(2, "0");
-//   const milliseconds = Math.floor(time % 1000)
-//     .toString()
-//     .padStart(3, "0");
+  startBtn.addEventListener("click", () => {
+    clearInterval(Interval);
+    Interval = setInterval(startTimer, 10);
+  });
+  stopBtn.addEventListener("click", () => {
+    clearInterval(Interval);
+  });
+  resetBtn.addEventListener("click", () => {
+    clearInterval(Interval);
+    tens = "00";
+    seconds = "00";
+    Tens.innerHTML = tens;
+    Seconds.innerHTML = seconds;
+  });
 
-//   document.getElementById(
-//     "stop-watch"
-//   ).textContent = `${hours}:${minutes}:${seconds}.${milliseconds}`;
-// }
+  function startTimer() {
+    tens++;
+    if (tens <= 9) {
+      Tens.innerHTML = "0" + tens;
+    }
+    if (tens > 9) {
+      Tens.innerHTML = tens;
+    }
+    if (tens > 99) {
+      seconds++;
+      Seconds.innerHTML = "0" + seconds;
+      tens = 0;
+      Tens.innerHTML = "0" + 0;
+    }
+    if (seconds > 9) {
+      Seconds.innerHTML = seconds;
+    }
+  }
+};
