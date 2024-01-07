@@ -1,23 +1,48 @@
-// function updateDigitalClock() {
-//     const now = new Date();
-//     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-//     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var dialLines = document.getElementsByClassName("diallines");
+var clockEl = document.getElementsByClassName("clock")[0];
 
-//     const dayOfWeek = daysOfWeek[now.getDay()];
-//     const dayOfMonth = now.getDate();
-//     const month = months[now.getMonth()];
-//     const year = now.getFullYear();
+for (var i = 1; i < 60; i++) {
+  clockEl.innerHTML += "<div class='diallines'></div>";
+  dialLines[i].style.transform = "rotate(" + 6 * i + "deg)";
+}
 
-//     let hours = now.getHours();
-//     const ampm = hours >= 12 ? 'PM' : 'AM';
-//     hours = hours % 12 || 12; // Convert to 12-hour format
-//     const minutes = now.getMinutes().toString().padStart(2, '0');
-//     const seconds = now.getSeconds().toString().padStart(2, '0');
+function clock() {
+  var weekday = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    d = new Date(),
+    h = d.getHours(),
+    m = d.getMinutes(),
+    s = d.getSeconds(),
+    date = d.getDate(),
+    month = d.getMonth() + 1,
+    year = d.getFullYear(),
+    hDeg = h * 30 + m * (360 / 720),
+    mDeg = m * 6 + s * (360 / 3600),
+    sDeg = s * 6,
+    hEl = document.querySelector(".hour-hand"),
+    mEl = document.querySelector(".minute-hand"),
+    sEl = document.querySelector(".second-hand"),
+    dateEl = document.querySelector(".date"),
+    dayEl = document.querySelector(".day");
 
-//     const digitalClock = document.getElementById('world-clock');
-//     digitalClock.textContent = ` ${hours}:${minutes}:${seconds}
-//     ${ampm} ${dayOfWeek}, ${dayOfMonth} ${month} ${year}`;
-// }
+  var day = weekday[d.getDay()];
 
-// setInterval(updateDigitalClock, 1000);
-// updateDigitalClock();  // Update immediately on page load
+  if (month < 9) {
+    month = "0" + month;
+  }
+
+  hEl.style.transform = "rotate(" + hDeg + "deg)";
+  mEl.style.transform = "rotate(" + mDeg + "deg)";
+  sEl.style.transform = "rotate(" + sDeg + "deg)";
+  dateEl.innerHTML = date + "/" + month + "/" + year;
+  dayEl.innerHTML = day;
+}
+
+setInterval("clock()", 100);

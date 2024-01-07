@@ -8,7 +8,7 @@
   position: relative;
   border-radius: 5px;
   border-color: rgb(2, 101, 2);
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -272,7 +272,7 @@
   width: 50px;
   height: 40px;
   display: none;
-  position: relative;
+  position: absolute;
   right: 15px; /*Adjusted to open on the right side */
   top: 20px;
   background-color: #fff;

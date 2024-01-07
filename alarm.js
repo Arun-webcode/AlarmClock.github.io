@@ -47,6 +47,22 @@ function okButton() {
 
   let newAlarmHour = document.getElementById("hours").value;
   let newAlarmMin = document.getElementById("minutes").value;
+  console.log(newAlarmHour + "  % % " + newAlarmMin);
+
+  if (
+    ampm === "undefined" ||
+    newAlarmHour === "" ||
+    newAlarmMin === "" ||
+    isNaN(newAlarmHour) ||
+    isNaN(newAlarmMin) ||
+    newAlarmHour < 0 ||
+    newAlarmHour > 11 ||
+    newAlarmMin < 0 ||
+    newAlarmMin > 59
+  ) {
+    alert("Invalid input. Please enter valid hours and minutes.");
+    return;
+  }
 
   // setTimeout(() => {
   //Generate new card from here
@@ -60,11 +76,11 @@ function okButton() {
                 <sup id="more_vert"
                  style="font-size: 16px" 
                  class="material-symbols-outlined" 
-                 onclick="togglePopUp()"
+                 onclick="togglePopUp(event, ${cardCounter})"
                  >more_vert
                  </sup>
 
-                 <div id="myPopup" class="popup">
+                 <div id="myPopup-${cardCounter}" class="popup">
                  <button class="del-dis-btn" onclick="deleteCard(${cardCounter})">Delete</button>
                  <button class="del-dis-btn">Disable</button>
                  </div>
@@ -76,8 +92,7 @@ function okButton() {
                  <div id="slider-snooze-win"></div>
                  </span>
 
-                    </div>
-                `;
+                </div>`;
 
   // Append the card to the card container
   cardContainer.appendChild(card);
@@ -86,24 +101,25 @@ function okButton() {
   cardCounter++;
   // });
 
-  if (
-    isNaN(newAlarmHour) ||
-    isNaN(newAlarmMin) ||
-    newAlarmHour < 0 ||
-    newAlarmHour > 23 ||
-    newAlarmMin < 0 ||
-    newAlarmMin > 59
-  ) {
-    alert("Invalid input. Please enter valid hours and minutes.");
-    return;
-  }
-
   let newAlarm = { hour: newAlarmHour, min: newAlarmMin };
   alarms.push(newAlarm);
 }
 
-function togglePopUp() {
-  var popup = document.getElementById("myPopup");
+function togglePopUp(event, cardCounter) {
+  var popup = document.getElementById(`myPopup-${cardCounter}`);
+
+  // Calculate the position of the popup based on the clicked icon
+  var iconRect = event.target.getBoundingClientRect();
+  var cardRect = event.target.parentElement.getBoundingClientRect();
+
+  var topOffset = iconRect.top - cardRect.top;
+  var leftOffset = iconRect.left - cardRect.left;
+
+  // Set the position of the popup
+  popup.style.top = topOffset + "px";
+  popup.style.left = leftOffset + "px";
+
+  // Toggle the display of the popup
   popup.style.display = popup.style.display === "block" ? "none" : "block";
 }
 
