@@ -16,11 +16,13 @@ body {
   background-color: var(--secondaryColor);
 } */
 
+/* It seperates a button which shows stop watch but it is hidden until clicked on startstopbutton*/
 #stop-watch {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
 }
 

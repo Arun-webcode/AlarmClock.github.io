@@ -1,48 +1,35 @@
-var dialLines = document.getElementsByClassName("diallines");
-var clockEl = document.getElementsByClassName("clock")[0];
+function updateClock() {
+  const now = new Date();
 
-for (var i = 1; i < 60; i++) {
-  clockEl.innerHTML += "<div class='diallines'></div>";
-  dialLines[i].style.transform = "rotate(" + 6 * i + "deg)";
+  // Analog Clock
+  const hour = (now.getHours() % 12) + now.getMinutes() / 60;
+  const minute = now.getMinutes() + now.getSeconds() / 60;
+  const second = now.getSeconds();
+
+  document.getElementById("hour").style.transform = `rotate(${
+    (hour / 12) * 360
+  }deg)`;
+  document.getElementById("minute").style.transform = `rotate(${
+    (minute / 60) * 360
+  }deg)`;
+  document.getElementById("second").style.transform = `rotate(${
+    (second / 60) * 360
+  }deg)`;
+
+  // Digital Clock
+  const timeString = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+  const dateString = now.toDateString();
+
+  document.getElementById("time").innerText = timeString;
+  document.getElementById("date").innerText = dateString;
 }
 
-function clock() {
-  var weekday = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ],
-    d = new Date(),
-    h = d.getHours(),
-    m = d.getMinutes(),
-    s = d.getSeconds(),
-    date = d.getDate(),
-    month = d.getMonth() + 1,
-    year = d.getFullYear(),
-    hDeg = h * 30 + m * (360 / 720),
-    mDeg = m * 6 + s * (360 / 3600),
-    sDeg = s * 6,
-    hEl = document.querySelector(".hour-hand"),
-    mEl = document.querySelector(".minute-hand"),
-    sEl = document.querySelector(".second-hand"),
-    dateEl = document.querySelector(".date"),
-    dayEl = document.querySelector(".day");
+// Update clock every second
+setInterval(updateClock, 1000);
 
-  var day = weekday[d.getDay()];
-
-  if (month < 9) {
-    month = "0" + month;
-  }
-
-  hEl.style.transform = "rotate(" + hDeg + "deg)";
-  mEl.style.transform = "rotate(" + mDeg + "deg)";
-  sEl.style.transform = "rotate(" + sDeg + "deg)";
-  dateEl.innerHTML = date + "/" + month + "/" + year;
-  dayEl.innerHTML = day;
-}
-
-setInterval("clock()", 100);
+// Initial call to set the clock immediately
+updateClock();

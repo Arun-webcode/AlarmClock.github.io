@@ -87,24 +87,6 @@ body {
   align-content: baseline;
 }
 
-/* It seperates first button which shows Real world timing */
-#world-clock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "Arial", sans-serif;
-  font-size: 2em;
-  visibility: hidden;
-}
-
-/* It seperates a button which shows stop watch but it is hidden until clicked on startstopbutton*/
-#stop-watch {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 3em;
-}
-
 /* It seperates third button which shows stop watch button*/
 #startStopButton {
   margin-top: 20px;
@@ -114,12 +96,10 @@ body {
   border: none;
   color: #222;
   cursor: pointer;
-  visibility: hidden;
 }
 
 /* It seperates fourth button which shows timer*/
 #timer {
-  visibility: hidden;
 }
 
 /* Bottom part of the inner container which have 4 buttons with different functionalities. */

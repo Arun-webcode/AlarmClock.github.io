@@ -1,152 +1,95 @@
+/* It seperates first button which shows Real world timing */
 #world-clock {
-  width: 80%;
+  width: 100%;
   height: 100%;
   display: none;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: aquamarine;
 }
-.clock {
-  background: #ececec;
+
+#square-frame {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(157, 153, 153, 0.7);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 50% 20% 50% 20%;
+}
+
+#analog-clock {
+  position: relative;
   width: 200px;
   height: 200px;
-  margin: 8% auto 0;
+  /* border: 1px solid #333; */
   border-radius: 50%;
-  border: 14px solid #333;
-  position: relative;
-  box-shadow: 0 2vw 4vw -1vw rgba(0, 0, 0, 0.8);
+  background-color: rgb(237, 230, 230);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
-.dot {
-  width: 14px;
-  height: 14px;
+.hand {
+  position: absolute;
+  transform-origin: 50% 100%;
+  background-color: #333;
+  left: 50%; /* Center the hands horizontally */
+  top: 50%;
   border-radius: 50%;
-  background: #ccc;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  position: absolute;
-  z-index: 10;
-  box-shadow: 0 2px 4px -1px black;
 }
 
-.hour-hand {
-  position: absolute;
-  z-index: 5;
-  width: 4px;
-  height: 65px;
-  background: #333;
-  top: 79px;
-  transform-origin: 50% 72px;
-  left: 50%;
-  margin-left: -2px;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
+#hour {
+  height: 50px;
+  width: 5px;
+  margin-left: -2.5px;
+  margin-top: -50px; /* Adjust for the height to center it vertically */
 }
 
-.minute-hand {
-  position: absolute;
-  z-index: 6;
-  width: 4px;
-  height: 100px;
-  background: #666;
-  top: 46px;
-  left: 50%;
-  margin-left: -2px;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-  transform-origin: 50% 105px;
+#minute {
+  height: 80px;
+  width: 3px;
+  margin-left: -1.5px;
+  margin-top: -80px; /* Adjust for the height to center it vertically */
 }
 
-.second-hand {
-  position: absolute;
-  z-index: 7;
+#second {
+  height: 90px;
   width: 2px;
-  height: 120px;
-  background: gold;
-  top: 26px;
-  left: 50%;
+  background-color: red;
   margin-left: -1px;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-  transform-origin: 50% 125px;
+  margin-top: -90px; /* Adjust for the height to center it vertically */
 }
 
-#clock span {
-  display: inline-block;
+#center {
   position: absolute;
-  color: #333;
-  font-size: 22px;
-  font-family: "Poiret One";
-  font-weight: 700;
-  z-index: 4;
+  width: 10px;
+  height: 10px;
+  background-color: #333;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.h12 {
-  top: 30px;
-  left: 50%;
-  margin-left: -9px;
-}
-.h3 {
-  top: 140px;
-  right: 30px;
-}
-.h6 {
-  bottom: 30px;
-  left: 50%;
-  margin-left: -5px;
-}
-.h9 {
-  left: 32px;
-  top: 140px;
-}
-
-.diallines {
-  position: absolute;
-  z-index: 2;
-  width: 2px;
-  height: 15px;
-  background: #666;
-  left: 50%;
-  margin-left: -1px;
-  transform-origin: 50% 150px;
-}
-.diallines:nth-of-type(5n) {
-  position: absolute;
-  z-index: 2;
-  width: 4px;
-  height: 25px;
-  background: #666;
-  left: 50%;
-  margin-left: -1px;
-  transform-origin: 50% 150px;
-}
-
-.info {
-  position: absolute;
-  width: 120px;
-  height: 20px;
-  border-radius: 7px;
-  background: #ccc;
+#digital-clock {
+  width: 250px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  line-height: 20px;
-  color: #000;
-  font-size: 11px;
-  top: 200px;
-  left: 50%;
-  margin-left: -60px;
-  font-family: "Poiret One";
-  font-weight: 700;
-  z-index: 3;
-  letter-spacing: 3px;
-  margin-left: -60px;
-  left: 50%;
+  background-color: white;
+  border-radius: 50% 50% 5% 5%;
+  box-shadow: inset 0 0 10px rgba(98, 96, 96, 0.5);
 }
-.date {
-  top: 80px;
+
+#time {
+  font-size: 24px;
+  color: red;
 }
-.day {
-  top: 200px;
+
+#date {
+  font-size: 18px;
+  color: gray;
 }
