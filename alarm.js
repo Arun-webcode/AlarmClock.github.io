@@ -1,15 +1,3 @@
-// let newAlarmHour = document.getElementById("hours").value;
-// let newAlarmMin = document.getElementById("minutes").value;
-
-// let newAlarm = {
-//   hour: newAlarmHour,
-//   minute: newAlarmMin,
-// };
-
-// alarm.push(newAlarm);
-
-// yahan se space dena hai
-
 let alarmNewCard = document.getElementById("setnew-alarm");
 // set new alarm open card
 function setNewAlarm() {
@@ -29,25 +17,41 @@ function setMinutes() {
 // it is cancel button of u want to discard new alarm or if you want to set new alarm then press ok button and new alarm will be set
 let alarms = []; // Array to store upcoming alarms
 let cardCounter = 1;
-let ampm; // Variable to store the selected value
 
-function selectTime(event) {
-  let selectedElement = event.target;
+// Variable to track if an alarm is already set
+let alarmSet = false;
+// Variable to store the timeout ID
+let alarmTimeout;
 
-  if (selectedElement.classList.contains("Am-Pm")) {
-    ampm = selectedElement.textContent;
-    console.log("Selected value: " + ampm);
-  }
+// Variable to store the selected AM/PM value
+let ampm = "";
+
+// Function to set the AM/PM value
+function setAMPM(value) {
+  ampm = value;
 }
 
-console.log("Selected value: " + ampm);
-
+// Function to set the alarm
 function okButton() {
   alarmNewCard.style.display = "none";
 
-  let newAlarmHour = document.getElementById("hours").value;
-  let newAlarmMin = document.getElementById("minutes").value;
-  console.log(newAlarmHour + "  % % " + newAlarmMin);
+  // Check if an alarm is already set, and if so, prevent setting a new one
+  if (alarmSet) {
+    console.log(
+      "Alarm is already set. Please turn it off before setting a new one."
+    );
+    return;
+  }
+  // Get values from input fields
+  const newAlarmHour = document.getElementById("hours").value;
+  const newAlarmMin = document.getElementById("minutes").value;
+
+  // console.log(`hii value set is ${ampm}`);
+  // check if time and every parameter is correct or not
+  if (ampm === "") {
+    console.log("Please select AM or PM before setting the alarm.");
+    return;
+  }
 
   if (
     ampm === "undefined" ||
@@ -64,10 +68,34 @@ function okButton() {
     return;
   }
 
+  // Get the current time
+  const now = new Date();
+
+  // Create a Date object for the specified alarm time
+  const alarmTime = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    convertTo24HourFormat(newAlarmHour, ampm),
+    newAlarmMin,
+    0,
+    0
+  );
+
+  // Calculate the time difference between now and the alarm time
+  const timeDiff = alarmTime - now;
+
+  // Check if the specified time is in the future
+  if (timeDiff <= 0) {
+    console.log("Please set a future time for the alarm.");
+    return;
+  }
+
   // setTimeout(() => {
   //Generate new card from here
   const cardContainer = document.getElementById("card-container");
-  // Create a new card div
+
+  // Create a new div element to display the alarm information
   const card = document.createElement("div");
   card.className = "card";
   card.id = `card-${cardCounter}`;
@@ -97,12 +125,43 @@ function okButton() {
   // Append the card to the card container
   cardContainer.appendChild(card);
 
-  // Increment the card counter
-  cardCounter++;
-  // });
-
   let newAlarm = { hour: newAlarmHour, min: newAlarmMin };
   alarms.push(newAlarm);
+
+  // Set a timeout for the alert to trigger when the alarm time is reached
+  alarmTimeout = setTimeout(() => {
+    if (alarmSet) {
+      alert("Alarm time complete. Please turn it off.");
+      // Reset the alarmSet variable after the alert is shown
+      alarmSet = false;
+    }
+  }, timeDiff);
+
+  // Set the alarmSet variable to true to prevent setting multiple alarms simultaneously
+  alarmSet = true;
+  ampm = "";
+  // Increment the card counter
+  cardCounter++;
+}
+
+// Function to convert the hour to 24-hour format
+function convertTo24HourFormat(hour, ampm) {
+  // Get the current time
+  const now = new Date();
+  const currentHour = now.getHours();
+  if (ampm === "AM" && hour >= currentHour) {
+    return hour;
+  } else if (ampm === "PM" && hour + 12 >= currentHour) {
+    return hour + 12;
+  } else if (ampm === "AM" && hour < currentHour && currentHour < 12) {
+    return hour + 12;
+  } else if (ampm === "PM" && hour < currentHour && currentHour < 12) {
+    return hour + 24;
+  } else if (ampm === "AM" && hour + 12 < currentHour && currentHour >= 12) {
+    return hour;
+  } else {
+    return hour + 12;
+  }
 }
 
 function togglePopUp(event, cardCounter) {
@@ -126,21 +185,27 @@ function togglePopUp(event, cardCounter) {
 // Close the popup if the user clicks outside of it
 window.onclick = function (event) {
   if (!event.target.matches(".material-symbols-outlined")) {
-    var popup = document.getElementById("myPopup");
-    if (popup.style.display === "block") {
+    var popup = document.getElementById(`myPopup-${cardCounter}`);
+    if (popup.style.display === "flex") {
       popup.style.display = "none";
     }
   }
 };
 
-// for deleting the card
 function deleteCard(cardId) {
   const cardToRemove = document.getElementById(`card-${cardId}`);
   if (cardToRemove) {
+    // Clear the timeout associated with the deleted card
+    clearTimeout(alarmTimeout);
+    // Remove the card from the DOM
     cardToRemove.remove();
-    // alert(`Card ${cardId} deleted`);
+    // Remove the deleted alarm from the 'alarms' array
+    alarms.splice(cardId - 1, 1);
+    // Update the alarmSet variable based on the remaining alarms
+    alarmSet = alarms.length > 0;
+    alert(`Card ${cardId} deleted`);
   } else {
-    // alert(`Card ${cardId} not found`);
+    alert(`Card ${cardId} not found`);
   }
 }
 

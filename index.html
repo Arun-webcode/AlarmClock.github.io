@@ -26,19 +26,31 @@
 
         <div id="world-clock">
           <div id="square-frame">
-          <div id="analog-clock">
-            <div id="hour" class="hand"></div>
-            <div id="minute" class="hand"></div>
-            <div id="second" class="hand"></div>
-            <div id="center"></div>
+            <div id="analog-clock">
+              <div id="hour" class="hand"></div>
+              <div id="minute" class="hand"></div>
+              <div id="second" class="hand"></div>
+              <div id="center"></div>
+              <span style="--i: 1"><b>1</b></span>
+              <span style="--i: 2"><b>2</b></span>
+              <span style="--i: 3"><b>3</b></span>
+              <span style="--i: 4"><b>4</b></span>
+              <span style="--i: 5"><b>5</b></span>
+              <span style="--i: 6"><b>6</b></span>
+              <span style="--i: 7"><b>7</b></span>
+              <span style="--i: 8"><b>8</b></span>
+              <span style="--i: 9"><b>9</b></span>
+              <span style="--i: 10"><b>10</b></span>
+              <span style="--i: 11"><b>11</b></span>
+              <span style="--i: 12"><b>12</b></span>
+            </div>
           </div>
-        </div>
 
           <div id="digital-clock">
             <div id="time"></div>
             <div id="date"></div>
           </div>
-        
+
         </div>
 
 
@@ -59,9 +71,9 @@
                 <b style="font-size: 30px; font-weight: 100">:</b>
                 <input class="hours-minutes" id="minutes" onclick="setMinutes()"></input>
               </div>
-              <div id="Am-Pm" onclick="selectTime(event)">
-                <button class="Am-Pm" id="Am">AM</button>
-                <button class="Am-Pm" id="Pm">PM</button>
+              <div id="Am-Pm">
+                <button class="Am-Pm" id="Am" onclick="setAMPM('AM')">AM</button>
+                <button class="Am-Pm" id="Pm" onclick="setAMPM('PM')">PM</button>
               </div>
             </div>
             <div class="set-time">
