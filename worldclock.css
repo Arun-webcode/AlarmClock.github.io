@@ -9,8 +9,8 @@
 }
 
 #square-frame {
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,8 +21,8 @@
 
 #analog-clock {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 235px;
+  height: 235px;
   /* border: 1px solid #333; */
   border-radius: 50%;
   background-color: rgb(237, 230, 230);
@@ -58,6 +58,20 @@
   background-color: red;
   margin-left: -1px;
   margin-top: -90px; /* Adjust for the height to center it vertically */
+}
+
+#analog-clock span {
+  position: absolute;
+  transform: rotate(calc(30deg * var(--i)));
+  inset: 2px;
+  text-align: center;
+}
+#analog-clock span b {
+  transform: rotate(calc(-30deg * var(--i)));
+  display: inline-block;
+  font-size: 9px;
+  color: rgb(77, 74, 74);
+  cursor: pointer;
 }
 
 #center {
