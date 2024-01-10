@@ -14,12 +14,9 @@ function setMinutes() {
   document.getElementById("set-minute").style.display = "flex";
 }
 
-// it is cancel button of u want to discard new alarm or if you want to set new alarm then press ok button and new alarm will be set
 let alarms = []; // Array to store upcoming alarms
-let cardCounter = 1;
+let cardCounter = 0;
 
-// Variable to track if an alarm is already set
-let alarmSet = false;
 // Variable to store the timeout ID
 let alarmTimeout;
 
@@ -35,21 +32,13 @@ function setAMPM(value) {
 function okButton() {
   alarmNewCard.style.display = "none";
 
-  // Check if an alarm is already set, and if so, prevent setting a new one
-  if (alarmSet) {
-    console.log(
-      "Alarm is already set. Please turn it off before setting a new one."
-    );
-    return;
-  }
   // Get values from input fields
   const newAlarmHour = document.getElementById("hours").value;
   const newAlarmMin = document.getElementById("minutes").value;
 
-  // console.log(`hii value set is ${ampm}`);
   // check if time and every parameter is correct or not
   if (ampm === "") {
-    console.log("Please select AM or PM before setting the alarm.");
+    alert("Please select AM or PM before setting the alarm.");
     return;
   }
 
@@ -68,31 +57,16 @@ function okButton() {
     return;
   }
 
-  // Get the current time
-  const now = new Date();
+  let newAlarm = {
+    id: cardCounter,
+    hour: newAlarmHour,
+    min: newAlarmMin,
+    ampm: ampm,
+  };
 
-  // Create a Date object for the specified alarm time
-  const alarmTime = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate(),
-    convertTo24HourFormat(newAlarmHour, ampm),
-    newAlarmMin,
-    0,
-    0
-  );
+  alarms.push(newAlarm);
 
-  // Calculate the time difference between now and the alarm time
-  const timeDiff = alarmTime - now;
-
-  // Check if the specified time is in the future
-  if (timeDiff <= 0) {
-    console.log("Please set a future time for the alarm.");
-    return;
-  }
-
-  // setTimeout(() => {
-  //Generate new card from here
+  // Generate new card from here
   const cardContainer = document.getElementById("card-container");
 
   // Create a new div element to display the alarm information
@@ -125,23 +99,30 @@ function okButton() {
   // Append the card to the card container
   cardContainer.appendChild(card);
 
-  let newAlarm = { hour: newAlarmHour, min: newAlarmMin };
-  alarms.push(newAlarm);
-
   // Set a timeout for the alert to trigger when the alarm time is reached
-  alarmTimeout = setTimeout(() => {
-    if (alarmSet) {
-      alert("Alarm time complete. Please turn it off.");
-      // Reset the alarmSet variable after the alert is shown
-      alarmSet = false;
-    }
-  }, timeDiff);
+  setTimeout(() => {
+    alert(`Alarm ${cardCounter} time complete. Please turn it off.`);
+  }, calculateTimeDiff(newAlarm));
 
-  // Set the alarmSet variable to true to prevent setting multiple alarms simultaneously
-  alarmSet = true;
   ampm = "";
   // Increment the card counter
   cardCounter++;
+}
+
+// Function to calculate time difference between now and the alarm time
+function calculateTimeDiff(alarm) {
+  const now = new Date();
+  const alarmTime = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    convertTo24HourFormat(alarm.hour, alarm.ampm),
+    alarm.min,
+    0,
+    0
+  );
+
+  return alarmTime - now;
 }
 
 // Function to convert the hour to 24-hour format
@@ -149,18 +130,26 @@ function convertTo24HourFormat(hour, ampm) {
   // Get the current time
   const now = new Date();
   const currentHour = now.getHours();
-  if (ampm === "AM" && hour >= currentHour) {
+  if (currentHour < 12 && ampm === "AM" && hour >= currentHour) {
+    // if Alarm set on morning time
     return hour;
-  } else if (ampm === "PM" && hour + 12 >= currentHour) {
+  } else if (currentHour < 12 && ampm === "PM" && hour >= currentHour) {
     return hour + 12;
-  } else if (ampm === "AM" && hour < currentHour && currentHour < 12) {
-    return hour + 12;
-  } else if (ampm === "PM" && hour < currentHour && currentHour < 12) {
+  } else if (currentHour < 12 && ampm === "AM" && hour < currentHour) {
     return hour + 24;
-  } else if (ampm === "AM" && hour + 12 < currentHour && currentHour >= 12) {
-    return hour;
-  } else {
+  } else if (currentHour < 12 && ampm === "PM" && hour < currentHour) {
+    return hour + 36;
+  }
+  // if Alarm set on evening time
+  else if (currentHour >= 12 && ampm === "PM" && hour + 12 >= currentHour) {
     return hour + 12;
+  } else if (
+    (currentHour >= 12 && ampm === "AM" && hour + 12 >= currentHour) ||
+    hour + 12 < currentHour
+  ) {
+    return hour + 24;
+  } else if (currentHour >= 12 && ampm === "PM" && hour + 12 < currentHour) {
+    return hour + 36;
   }
 }
 
@@ -182,16 +171,6 @@ function togglePopUp(event, cardCounter) {
   popup.style.display = popup.style.display === "block" ? "none" : "block";
 }
 
-// Close the popup if the user clicks outside of it
-window.onclick = function (event) {
-  if (!event.target.matches(".material-symbols-outlined")) {
-    var popup = document.getElementById(`myPopup-${cardCounter}`);
-    if (popup.style.display === "flex") {
-      popup.style.display = "none";
-    }
-  }
-};
-
 function deleteCard(cardId) {
   const cardToRemove = document.getElementById(`card-${cardId}`);
   if (cardToRemove) {
@@ -202,14 +181,15 @@ function deleteCard(cardId) {
     // Remove the deleted alarm from the 'alarms' array
     alarms.splice(cardId - 1, 1);
     // Update the alarmSet variable based on the remaining alarms
-    alarmSet = alarms.length > 0;
+    // alarmSet = alarms.length > 0;
     alert(`Card ${cardId} deleted`);
+    cardCounter--;
   } else {
     alert(`Card ${cardId} not found`);
   }
 }
 
-// for cancelling the set new alarm
+// for canceling the set new alarm
 function cancelButton() {
   alarmNewCard.style.display = "none";
 }
