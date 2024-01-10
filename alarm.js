@@ -130,8 +130,8 @@ function convertTo24HourFormat(hour, ampm) {
   // Get the current time
   const now = new Date();
   const currentHour = now.getHours();
+  // if Alarm set on morning time
   if (currentHour < 12 && ampm === "AM" && hour >= currentHour) {
-    // if Alarm set on morning time
     return hour;
   } else if (currentHour < 12 && ampm === "PM" && hour >= currentHour) {
     return hour + 12;
@@ -143,12 +143,11 @@ function convertTo24HourFormat(hour, ampm) {
   // if Alarm set on evening time
   else if (currentHour >= 12 && ampm === "PM" && hour + 12 >= currentHour) {
     return hour + 12;
-  } else if (
-    (currentHour >= 12 && ampm === "AM" && hour + 12 >= currentHour) ||
-    hour + 12 < currentHour
-  ) {
+  } else if (currentHour >= 12 && ampm === "AM" && hour + 12 >= currentHour) {
     return hour + 24;
   } else if (currentHour >= 12 && ampm === "PM" && hour + 12 < currentHour) {
+    return hour + 24;
+  } else {
     return hour + 36;
   }
 }
