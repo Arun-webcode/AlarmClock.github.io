@@ -88,21 +88,6 @@ body {
   align-content: baseline;
 }
 
-/* It seperates third button which shows stop watch button*/
-#startStopButton {
-  margin-top: 20px;
-  padding: 10px;
-  font-size: 1em;
-  background-color: #00ff00;
-  border: none;
-  color: #222;
-  cursor: pointer;
-}
-
-/* It seperates fourth button which shows timer*/
-#timer {
-}
-
 /* Bottom part of the inner container which have 4 buttons with different functionalities. */
 
 /* Bottom container */
@@ -112,7 +97,7 @@ body {
   background-color: white;
   border-radius: 0px 0px 12px 12px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 /* Bottom container 4 buttons with flex property */
@@ -139,4 +124,15 @@ body {
 }
 .bottom-buttons span {
   font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .main-container {
+    width: 100%;
+    height: 100%;
+  }
+  .inner-container {
+    width: 100%;
+    height: 100%;
+  }
 }
