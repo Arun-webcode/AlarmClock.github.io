@@ -19,7 +19,7 @@
     <div class="inner-container">
       <div class="navbar">
         <span>Alarm</span>
-        <button class="material-symbols-outlined">add</button>
+        <button class="material-symbols-outlined" id="stopAlarm" onclick="stopAlarm()">stop_circle</button>
       </div>
 
       <div id="mid-container">
@@ -102,7 +102,7 @@
           <div class="card-row" id="repeat">
             <span>Repeat</span>
             <select id="repeat-op">
-              <option value="Never">Never</option>
+              <!-- <option value="Never">Never</option> -->
               <option value="Always">Always</option>
             </select>
           </div>
@@ -111,8 +111,7 @@
             <span>Sound</span>
             <select id="sound-op">
               <option value="Waves">Waves</option>
-              <option value="Audio">Audio</option>
-              <option value="Silent">Silent</option>
+              <!-- <option value="Silent">Silent</option> -->
             </select>
           </div>
           <hr />

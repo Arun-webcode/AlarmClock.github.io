@@ -70,8 +70,9 @@ function setMinutes() {
 }
 
 // Create an Audio object for the alarm ringtone
-const ring = new Audio("Alarm-ringtone.mp3");
+let ring = new Audio("Alarm-ringtone.mp3");
 ring.loop = true;
+let isplay = true;
 
 // Array to store upcoming alarms
 let alarms = [];
@@ -91,20 +92,48 @@ function setAMPM(value) {
 }
 
 // Function to update the clock and check for alarms
+// ...
+
+// Function to update the clock and check for alarms
 function updatealarmClock() {
   const now = new Date();
-  const currentHour = now.getHours();
-  const currentMin = now.getMinutes();
-  const currentAmPm = currentHour >= 12 ? "PM" : "AM";
+  let currentHour = now.getHours(),
+    currentMin = now.getMinutes(),
+    currentAmPm = currentHour >= 12 ? "PM" : "AM";
+
   console.log("Alarm ringing...");
+
+  Number.prototype.pad = function (digits) {
+    for (var n = this.toString(); n.length < digits; n = 0 + n);
+    return n;
+  };
+
   // Check if any alarms match the current time
   for (let i = 0; i < alarms.length; i++) {
-    if (alarms[i] === `${currentHour}:${currentMin} ${currentAmPm}`) {
-      console.log("Alarm ringing...");
-      ring.load();
-      ring.play();
+    if (
+      alarms[i] == `${currentHour.pad(2)}:${currentMin.pad(2)} ${currentAmPm}`
+    ) {
+      // Get the selected sound option
+      // const soundAlarm = document.getElementById("sound-op").value;
+
+      // Display stop button and set isplay to true
+      if (isplay) {
+        // Play the corresponding audio file based on the sound option
+        // if (soundAlarm === "Silent") {
+        //   alert("Alarm is ringing in silent mode please turn it off..");
+        //   isplay = false;
+        // } else {
+        playDefaultRingtone();
+        // }
+        document.querySelector("#stopAlarm").style.display = "flex";
+      }
     }
   }
+}
+
+// Function to play the default ringtone
+function playDefaultRingtone() {
+  ring.play();
 }
 
 // Function to initialize the clock and update it every second
@@ -121,6 +150,10 @@ function okButton() {
   // Get values from input fields
   let newAlarmHour = document.getElementById("hours").value;
   const newAlarmMin = document.getElementById("minutes").value;
+  const repeatAlarm = document.getElementById("repeat-op").value;
+  const soundAlarm = document.getElementById("sound-op").value;
+
+  console.log(`${repeatAlarm} :: ${soundAlarm}`);
 
   // Check if time and every parameter is correct or not
   if (ampm === "") {
@@ -165,8 +198,8 @@ function okButton() {
                  <button class="del-dis-btn">Disable</button>
                  </div>
 
-                 <div id="repeat-show">Repeat:</div>
-                 <div id="sound-show">Sound:</div>
+                 <div id="repeat-show">Repeat: ${repeatAlarm}</div>
+                 <div id="sound-show">Sound: ${soundAlarm}</div>
 
                  <span id="toggle-snooze-win" onclick="toggleSnooze(${cardCounter})">
                  <div id="slider-snooze-win"></div>
@@ -182,7 +215,6 @@ function okButton() {
   if (ampm === "PM") {
     numberalHours += 12;
   }
-
   let newAlarm = `${numberalHours}:${Number(newAlarmMin)} ${ampm}`;
 
   // Add the new alarm to the array
@@ -234,6 +266,13 @@ function deleteCard(cardId) {
 // Function to cancel setting a new alarm
 function cancelButton() {
   alarmNewCard.style.display = "none";
+}
+
+// Stop alarm function starts here
+function stopAlarm() {
+  ring.pause();
+  isplay = false;
+  document.querySelector("#stopAlarm").style.display = "none";
 }
 
 // Function to toggle snooze on/off for each card
